@@ -30,6 +30,8 @@ public class LambdaTestSerenityDriver implements DriverSource {
 		
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("plugin","Serenity LambdaTest Plugin");
+		capabilities.setCapability("isRealMobile", true);
+		capabilities.setCapability("app","lt://APP10011121654105462192905");
 
 		Iterator it = environmentVariables.getKeys().iterator();
 		while (it.hasNext()) {

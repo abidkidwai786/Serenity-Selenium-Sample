@@ -1,7 +1,10 @@
-Feature: Google's Search Functionality
+Feature: Do native app automation
 
-    Scenario: Can find search results
-        When I click on checkboxes
-        And I add new Element "Complete LambdaTest Tutorial"
-        Then I Compare the new added element text with "Complete LambdaTest Tutorial"
+Scenario: Proverbial App scenario
 
+Given user is on the App home page
+When click on color element
+Then click on text element
+Then click on notification element
+Then click on toast element
+Then click on geolocation element

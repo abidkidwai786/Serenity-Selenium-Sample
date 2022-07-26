@@ -7,5 +7,5 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features = "src/test/resources/features/single.feature")
-public class ParallelSafariTest extends LambdaTestSerenityTest {
+public class ParallelAndroidTest2 extends LambdaTestSerenityTest {
 }

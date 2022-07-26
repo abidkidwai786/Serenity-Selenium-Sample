@@ -78,48 +78,18 @@ Make sure you have your LambdaTest credentials with you to run test automation s
 >**Test Scenario**: To run your first Serenity Test on LambdaTest Selenium Grid, let’s understand our test case scenario, the test case below checks for the word "**LambdaTest**" on Google and tests if the title of the resultant page is "**LambdaTest-Google Search**".
 
 ```bash
-Feature: Google's Search Functionality
-    Scenario: Can find search results
-        When I type query as "LambdaTest"
-        And I submit
-        Then I should see title "LambdaTest - Google Search"
+Feature: Feature: Do native app automation
+
+Scenario: Proverbial App scenario
+
+Given user is on the App home page
+When click on color element
+Then click on text element
+Then click on notification element
+Then click on toast element
+Then click on geolocation element
 ```
 
-Following below is the `GooglePage.java` file for the above Test Case Scenario.
-
-```java title="GooglePage.java"
-package com.lambdatest.cucumber.pages;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-import org.openqa.selenium.support.FindBy;
-
-import net.serenitybdd.core.pages.WebElementFacade;
-import net.thucydides.core.annotations.DefaultUrl;
-import net.thucydides.core.pages.PageObject;
-
-@DefaultUrl("https://www.google.com/ncr")
-public class GooglePage extends PageObject {
-
-    @FindBy(name = "q")
-    WebElementFacade search;
-
-    @FindBy(name = "btnK")
-    WebElementFacade searchButton;
-
-    public void searchForString(String searchString) {
-        search.sendKeys(searchString);
-    }
- public void submitForm() throws Exception {
-        searchButton.click();
-        Thread.sleep(5000);
-    }
-
-    public void titleShouldMatch(String matchTitle) {
-        assertThat(this.getTitle()).containsIgnoringCase(matchTitle);
-    }
-}
-```
 
 Below is the `LambdaTestSerenityDriver.java` file that shows the integration of Serenity with LambdaTest.
 
@@ -155,6 +125,9 @@ public class LambdaTestSerenityDriver implements DriverSource {
         String environment = System.getProperty("environment");
                 DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("plugin","Serenity LambdaTest Plugin");
+        capabilities.setCapability("isRealMobile", true); //For rea devices
+		capabilities.setCapability("app","lt://APP10011121654105462192905");
+
 
         Iterator it = environmentVariables.getKeys().iterator();
         while (it.hasNext()) {
@@ -202,14 +175,11 @@ mvn verify -P single
 ## Run Your Parallel Test Using Serenity
 
 
-To run parallel tests with Serenity, we will run **single.feature** test case in four different environments Chrome, Firefox, IE, and Safari.
-
-```java title="ParallelChromeTest.java"
-//Running Parallel Test On Chrome
+To run parallel tests with Serenity, we will run **single.feature** test case in different Android devices.
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features = "src/test/resources/features/single.feature")
-public class ParallelChromeTest extends LambdaTestSerenityTest {
+public class ParallelAndroidTest1 extends LambdaTestSerenityTest {
 }
 ```
 

@@ -10,29 +10,35 @@ import net.thucydides.core.pages.PageObject;
 
 @DefaultUrl("https://lambdatest.github.io/sample-todo-app/")
 public class TodoApp extends PageObject {
-    @FindBy(name = "li1")
-    WebElementFacade element1;
-    @FindBy(name = "li2")
-    WebElementFacade element2;
-    @FindBy(id = "sampletodotext")
-    WebElementFacade inputBox;
-    @FindBy(id = "addbutton")
-    WebElementFacade addButton;
-    @FindBy(xpath = "/html/body/div/div/div/ul/li[6]/span")
-    WebElementFacade newElement;
+    @FindBy(id = "com.lambdatest.proverbial:id/color")
+    WebElementFacade color;
+    @FindBy(id = "com.lambdatest.proverbial:id/Text")
+    WebElementFacade text;
+    @FindBy(id = "com.lambdatest.proverbial:id/toast")
+    WebElementFacade toast;
+    @FindBy(id = "com.lambdatest.proverbial:id/notification")
+    WebElementFacade notification;
+    @FindBy(id = "com.lambdatest.proverbial:id/geoLocation")
+    WebElementFacade geo;
 
-    public void clickOn() {
-        element1.click();
-        element2.click();
+    public void clickOnColor() throws InterruptedException {
+        color.click();
     }
 
-    public void addNewElement(String newElem) {
-        inputBox.sendKeys(newElem);
-        addButton.click();
+    public void clickOnText() throws InterruptedException {
+        text.click();
     }
 
-    public void assertEqual(String newString) {
-        String text = newElement.getText();
-        assertThat(newString).isEqualTo(text);
+    public void clickOnNotification() throws InterruptedException {
+        notification.click();
     }
+
+    public void clickOnToast() throws InterruptedException {
+        toast.click();
+    }
+
+    public void clickOnGeolocation() throws InterruptedException {
+        geo.click();
+    }
+
 }
